@@ -1,0 +1,5 @@
+{
+  "version": 2,
+  "name": "horoscopebot",
+  "builds": [{ "src": "index.js", "use": "@now/node", "config": { "maxLambdaSize": "40mb" } }]
+}
