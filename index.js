@@ -1,4 +1,4 @@
-const http = require('http')
+const https = require('https')
 const request = require('request')
 const token = '755380132:AAH326o9uguBRBOC9qpGX_n5TvQug85W8Ys'
 const webHookUrl = 'https://horoscopebot.mudrayaod.now.sh'
@@ -24,7 +24,7 @@ const sendMessage = (chatId, text, res) => {
     )
 }
 
-http.createServer(function (req, res) {
+https.createServer(function (req, res) {
     let data = ''
 
     req.on('data', chunk => {
