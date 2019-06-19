@@ -1,13 +1,8 @@
 const http = require('http');
 const request = require('request')
 const token = '755380132:AAH326o9uguBRBOC9qpGX_n5TvQug85W8Ys'
-const webHookUrl = 'https://horoscopebot.mudrayaod.now.sh'
+const webHookUrl = 'https://app756.herokuapp.com/'
 
-const options = {
-        port: 443,
-        key: 'D:/FILES/J2019/node/telebot/key.pem',
-        cert: 'D:/FILES/J2019/node/telebot/server.crt',
-};
 
 const sendMessage = (chat_id, text, res) => {
     const sendMessageUrl = `https://api.telegram.org/bot${token}/sendMessage`;
