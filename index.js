@@ -54,7 +54,6 @@ const setWebHook = () => {
         },
         (error, response, body) => {
             console.log(body)
-            console.log(error)
         })
 }
 
