@@ -1,48 +1,48 @@
-const https = require('https')
+const http = require('http');
 const request = require('request')
 const token = '755380132:AAH326o9uguBRBOC9qpGX_n5TvQug85W8Ys'
 const webHookUrl = 'https://horoscopebot.mudrayaod.now.sh'
 
-const sendMessage = (chatId, text, res) => {
-    const sendMessageUrl = `https://api.telegram.org/bot${token}/sendMessage`
+const sendMessage = (chat_id, text, res) => {
+    const sendMessageUrl = `https://api.telegram.org/bot${token}/sendMessage`;
 
     request.post({
             url: sendMessageUrl,
             method: 'post',
             body: {
-                chat_id: chatId,
+                chat_id: chat_id,
                 text: text
             },
             json: true
         },
         (error, response, body) => {
-            console.log(error)
-            console.log(body)
-            res.writeHead(200, { 'Content-Type': 'text/html' })
+            console.log(error);
+            console.log(body);
+            res.writeHead(200, {'Content-Type': 'text/html'});
             res.end()
         }
     )
-}
+};
 
-https.createServer(function (req, res) {
-    let data = ''
+http.createServer(function (req, res) {
+    let data = '';
 
     req.on('data', chunk => {
-        data += chunk
-    })
+        data += chunk;
+    });
 
     req.on('end', () => {
-        const parsedUpdate = data != '' ? JSON.parse(data) : {}
+        const parsedUpdate = data != "" ? JSON.parse(data) : {};
         if (typeof parsedUpdate.message !== 'undefined') {
-            const text = parsedUpdate.message.text.toString()
-            const chatId = parsedUpdate.message.chat.id
-            sendMessage(chatId, text, res)
+            const text = parsedUpdate.message.text;
+            const chat_id = parsedUpdate.message.chat.id;
+            sendMessage(chat_id, text, res);
         }
-    })
-}).listen(3000)
+    });
+}).listen(3000);
 
 const setWebHook = () => {
-    const setWebhookUrl = `https://api.telegram.org/bot${token}/setWebhook`
+    const setWebhookUrl = `https://api.telegram.org/bot${token}/setWebhook`;
 
     request.post({
             url: setWebhookUrl,
@@ -53,8 +53,8 @@ const setWebHook = () => {
             json: true
         },
         (error, response, body) => {
-            console.log(body)
+            console.log(body);
         })
-}
+};
 
 setWebHook()
